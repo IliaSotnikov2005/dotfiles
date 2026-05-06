@@ -3,6 +3,6 @@
 **/lazy-lock.json
 **/undo/*
 
-.config/niri/cfg/display.kdl
-.config/niri/cfg/input.kdl
+**/display.kdl
+**/input.kdl
 
