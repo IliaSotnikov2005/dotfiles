@@ -89,3 +89,8 @@ end, { desc = "Toggle NvimTree (close Zen if active)" })
 
 -- Insert mode mappings
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode with jj" })
+
+-- Color picker binds
+vim.keymap.set("n", "<leader>cp", "<cmd>Shades<cr>", { desc = "ColorPicker" })
+vim.keymap.set("n", "<leader>cg", "<cmd>Huefy<cr>", { desc = "Generate palette" })
+vim.keymap.set("i", "<C-c>p", "<cmd>Shades<cr>", { desc = "ColorPicker" })
