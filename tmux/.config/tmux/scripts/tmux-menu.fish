@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 # Полный путь к скрипту (status filename может подвести в popup, лучше $HOME/...)
-set -g script_path (status filename)
+set -g script_path (realpath (status filename))
 
 # --- ФУНКЦИИ ГЕНЕРАЦИИ ДЕРЕВА ---
 
@@ -74,18 +74,18 @@ set -l selected (fish -c "$script_path $initial_mode" | fzf \
     --reverse --header-first --height=100% --border=none --cycle \
     --prompt="$prompt" \
     --bind="tab:down" \
-    --bind="ctrl-w:change-prompt(Tree View> )+reload($script_path --get-tree)" \
-    --bind="ctrl-s:change-prompt(Sessions> )+reload($script_path --get-sessions)" \
+    --bind="ctrl-w:change-prompt(Tree View> )+reload(fish $script_path --get-tree)" \
+    --bind="ctrl-s:change-prompt(Sessions> )+reload(fish $script_path --get-sessions)" \
     --bind="ctrl-x:execute(
-        set -l item (echo {} | string collect)
-        if string match -q \"*[S]*\" \$item
-            set -l target (echo \$item | awk '{print \$NF}')
-            tmux kill-session -t \"\$target\"
-        else
-            set -l target (echo \$item | awk '{print \$4}')
-            tmux kill-window -t \"\$target\"
-        end
-    )+reload(echo {fzf_prompt} | grep -q 'Tree' && $script_path --get-tree || $script_path --get-sessions)"
+    set -l item (echo {} | string collect)
+    if string match -q '*[S]*' \$item
+        set -l target (echo \$item | awk '{print \$NF}')
+        tmux kill-session -t \"\$target\"
+    else
+        set -l target (echo \$item | awk '{print \$4}')
+        tmux kill-window -t \"\$target\"
+    end
+)+reload(fish $script_path --get-tree)"
 )
 
 # --- ОБРАБОТКА ВЫБОРА ---
