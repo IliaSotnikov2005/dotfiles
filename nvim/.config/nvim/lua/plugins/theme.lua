@@ -1,43 +1,17 @@
--- ================================================================================================
--- TITLE : nightfox-nvim
--- ABOUT : A subtle, warm colorscheme for Neovim inspired by Sublime Text's Melange theme.
--- LINKS :
---   > github : https://github.com/savq/melange-nvim
--- ================================================================================================
-
 return {
 	{
-		"xiyaowong/nvim-transparent",
+		"Mofiqul/vscode.nvim",
 		lazy = false,
-		priority = 999,
-		opts = {
-			extra_groups = {
-				"NvimTreeNormal",
-				"NvimTreeNormalNC",
-				"NvimTreeSignColumn",
-				"NvimTreeEndOfBuffer",
-				"NvimTreeWinSeparator",
-			},
-		},
-	},
-	{
-		"EdenEast/nightfox.nvim",
-		lazy = false,
-		priority = 999,
+		priority = 1000,
 		config = function()
-			local palette = require("nightfox.palette").load("duskfox")
-
-			require("nightfox").setup({
-				options = {
-					transparent = false,
-				},
-				groups = {
-					duskfox = {
-						Visual = { bg = palette.blue.base, fg = palette.bg1 },
-					},
-				},
+			require("vscode").setup({
+				transparent = false,
+				theme = "dark",
+				disable_nvim_tree_hl = false,
+				italic_comments = true,
 			})
-			vim.cmd("colorscheme duskfox")
+
+			vim.cmd("colorscheme vscode")
 		end,
 	},
 }
