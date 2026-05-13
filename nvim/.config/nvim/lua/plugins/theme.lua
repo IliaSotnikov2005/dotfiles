@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : vscode.nvim
+-- LINKS :
+--   > github : https://github.com/Mofiqul/vscode.nvim
+-- ABOUT : a Neovim theme that mimics the default dark theme of Visual Studio Code.
+-- ================================================================================================
+
 return {
 	{
 		"Mofiqul/vscode.nvim",

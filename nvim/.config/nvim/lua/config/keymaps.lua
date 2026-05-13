@@ -54,15 +54,9 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position"
 vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev Buffer" })
 vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next Buffer" })
 
--- Закрытие текущего буфера (аккуратно, чтобы не закрыть nvim)
 vim.keymap.set("n", "<leader>x", function()
-	local bd = require("bufdelete") -- опционально, плагин famiu/bufdelete.nvim
-	if bd then
-		bd.bufdelete(0, false)
-	else
-		vim.cmd("bdelete")
-	end
-end, { desc = "Delete Buffer" })
+	require("mini.bufremove").delete(0, false)
+end, { desc = "Delete buffer (close)" })
 
 -- Fast save
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })

@@ -1,10 +1,13 @@
+-- ================================================================================================
+-- TITLE : minty.nvim
+-- LINKS :
+--   > github : https://github.com/nvzone/minty
+-- ABOUT : a color picker and palette generator for Neovim.
+-- ================================================================================================
+
 return {
 	"nvzone/minty",
 	cmd = { "Shades", "Huefy" },
-	keys = {
-		{ "<leader>cg", "<cmd>Huefy<cr>", desc = "Minty: Generate palette (Huefy)" },
-		{ "<C-c>p", "<cmd>Shades<cr>", mode = "i", desc = "Minty: Color picker (insert)" },
-	},
 	{
 		"nvzone/volt",
 		lazy = true,
@@ -24,5 +27,3 @@ return {
 		})
 	end,
 }
-
---test #6552d8

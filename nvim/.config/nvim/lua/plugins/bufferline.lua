@@ -1,3 +1,12 @@
+-- ================================================================================================
+-- TITLE : scope.nvim & bufferline.nvim
+-- LINKS :
+--   > github (scope) : https://github.com/tiagovla/scope.nvim
+--   > github (bufferline) : https://github.com/akinsho/bufferline.nvim
+-- ABOUT : scope.nvim - highlights currently visible buffer sections based on scope.
+--         bufferline.nvim - a sleek, customizable tabline/buffer line with scope integration.
+-- ================================================================================================
+
 return {
 	{
 		"tiagovla/scope.nvim",
@@ -5,18 +14,18 @@ return {
 	},
 	{
 		"akinsho/bufferline.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", "tiagovla/scope.nvim" },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"tiagovla/scope.nvim",
+		},
 		event = "VeryLazy",
 		opts = {
 			options = {
 				mode = "buffers",
-				-- СКРЫВАТЬ, если открыт всего 1 буфер
 				always_show_bufferline = false,
 
-				-- Исправляет "налезание" друг на друга
 				separator_style = "thin",
 
-				-- Улучшает читаемость в tmux
 				buffer_close_icons = true,
 				show_buffer_icons = true,
 
@@ -28,22 +37,22 @@ return {
 						separator = true,
 					},
 				},
-				-- Автоматическая фильтрация через scope.nvim
-				groups = { items = {}, options = { fill_hl = "TabLineFill" } },
+				groups = {
+					items = {},
+					options = { fill_hl = "TabLineFill" },
+				},
 
 				custom_filter = function(buf_number)
 					local bufname = vim.api.nvim_buf_get_name(buf_number)
 					local buftype = vim.bo[buf_number].buftype
 
-					-- Только реальные файлы (не терминал, не help, не quickfix)
 					if buftype ~= "" then
 						return false
 					end
-					-- Исключаем буферы без имени (например, [No Name])
 					if bufname == "" then
 						return false
 					end
-					-- Убираем dashboard, lazy и т.д.
+
 					local exclude_ft = {
 						"alpha",
 						"dashboard",
@@ -55,7 +64,7 @@ return {
 					if vim.tbl_contains(exclude_ft, vim.bo[buf_number].filetype) then
 						return false
 					end
-					-- Файл должен существовать на диске
+
 					return vim.fn.filereadable(bufname) == 1
 				end,
 			},

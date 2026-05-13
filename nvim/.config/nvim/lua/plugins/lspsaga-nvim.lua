@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : lspsaga.nvim
+-- LINKS :
+--   > github : https://github.com/glepnir/lspsaga.nvim
+-- ABOUT : a lightweight, full-featured LSP plugin based on Neovim's built-in LSP.
+-- ================================================================================================
+
 return {
 	"glepnir/lspsaga.nvim",
 	lazy = false,

@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : lsp_signature.nvim
+-- LINKS :
+--   > github : https://github.com/ray-x/lsp_signature.nvim
+-- ABOUT : show function signature help as you type.
+-- ================================================================================================
+
 return {
 	"ray-x/lsp_signature.nvim",
 	event = "VeryLazy",
@@ -6,7 +13,7 @@ return {
 		handler_opts = {
 			border = "rounded",
 		},
-		hint_enable = true, -- показывать подсказку в строке
+		hint_enable = true,
 		hint_prefix = "󰛸 ",
 	},
 	config = function(_, opts)

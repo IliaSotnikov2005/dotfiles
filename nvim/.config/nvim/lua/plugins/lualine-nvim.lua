@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : lualine.nvim
+-- LINKS :
+--   > github : https://github.com/nvim-lualine/lualine.nvim
+-- ABOUT : a blazing fast and easy to configure Neovim statusline written in Lua.
+-- ===============================================================================================
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
@@ -49,7 +56,7 @@ return {
 							end
 							return table.concat(client_names, ",")
 						end,
-						icon = "",
+						icon = " ",
 						color = { fg = "#858585" },
 					},
 					{ "encoding", color = { fg = "#858585" } },

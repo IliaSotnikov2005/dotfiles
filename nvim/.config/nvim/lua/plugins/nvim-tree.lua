@@ -10,6 +10,13 @@ return {
 	lazy = false,
 	config = function()
 		require("nvim-tree").setup({
+			sync_root_with_cwd = true,
+			actions = {
+				change_dir = {
+					enable = true,
+					global = true, -- использовать :cd (глобально), не :lcd (локально)
+				},
+			},
 			filters = {
 				dotfiles = false, -- Show hidden files (dotfiles)
 			},
@@ -19,4 +26,3 @@ return {
 		})
 	end,
 }
-
