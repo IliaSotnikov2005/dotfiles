@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : Diagnostics Configuration
+-- ABOUT : Configures diagnostic signs with custom icons for Error, Warn, Hint, and Info.
+-- LINKS :
+--   > neovim docs: https://neovim.io/doc/user/diagnostic.html
+-- ================================================================================================
+
 local M = {}
 
 local diagnostic_signs = {
@@ -7,6 +14,7 @@ local diagnostic_signs = {
 	Info = "",
 }
 
+--- @return nil
 M.setup = function()
 	vim.diagnostic.config({
 		signs = {

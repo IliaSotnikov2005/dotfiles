@@ -1,5 +1,15 @@
+-- ================================================================================================
+-- TITLE : LSP Keymaps & Utilities
+-- ABOUT : Provides an on_attach function that sets up LSP keymaps (native, lspsaga, fzf-lua) and
+--         DAP keymaps for supported clients (rust-analyzer).
+-- LINKS :
+--   > neovim lsp docs: https://neovim.io/doc/user/lsp.html
+-- ================================================================================================
+
 local M = {}
 
+--- @param event table LspAttach event object containing client_id and buf
+--- @return nil
 M.on_attach = function(event)
 	if not event.data then
 		return

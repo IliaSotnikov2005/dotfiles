@@ -8,7 +8,7 @@
 --- @param capabilities table LSP client capabilities (typically from nvim-cmp or similar)
 --- @return nil
 return function(capabilities)
-	vim.lsp.config('emmet_ls', {
+	vim.lsp.config("emmet_ls", {
 		capabilities = capabilities,
 		filetypes = {
 			"typescript",
@@ -20,6 +20,19 @@ return function(capabilities)
 			"scss",
 			"svelte",
 			"vue",
+			"vue-html",
+		},
+		settings = {
+			emmet = {
+				includeLanguages = {
+					vue = "html",
+					javascriptreact = "html",
+					typescriptreact = "html",
+				},
+				preferences = {
+					"css.webkitProperties",
+				},
+			},
 		},
 	})
 end

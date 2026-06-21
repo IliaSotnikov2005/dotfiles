@@ -1,12 +1,18 @@
--- Плагин для красивого отображения ошибок в строке
+-- ================================================================================================
+-- TITLE : tiny-inline-diagnostic.nvim
+-- ABOUT : Beautiful inline diagnostics display (replaces float windows).
+-- LINKS :
+--   > github: https://github.com/rachartier/tiny-inline-diagnostic.nvim
+-- ================================================================================================
+
 return {
 	"rachartier/tiny-inline-diagnostic.nvim",
-	event = "LspAttach", -- Загружаем только когда LSP прикрепляется к файлу
+	event = "LspAttach",
 	opts = {
-		preset = "modern", -- Современный стиль с иконками
+		preset = "modern",
 		options = {
-			show_source = { enabled = true, if_many = true }, -- Показывать источник ошибки (eslint, pyright и т.д.)
-			throttle = 20, -- Задержка для плавности при быстром движении курсора
+			show_source = { enabled = true, if_many = true },
+			throttle = 20,
 		},
 	},
 }
