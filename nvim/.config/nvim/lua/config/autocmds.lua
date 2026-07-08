@@ -36,11 +36,28 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	group = lsp_fmt_group,
 	callback = function()
 		require("mini.trailspace").trim()
-		local efm = vim.lsp.get_clients({ name = "efm" })
-		if vim.tbl_isempty(efm) then
-			return
+
+		local ft = vim.bo.filetype
+		if ft == "go" then
+			local bufnr = vim.api.nvim_get_current_buf()
+			vim.lsp.buf.code_action({
+				context = { only = { "source.organizeImports" }, diagnostics = {} },
+				apply = true,
+				bufnr = bufnr,
+			})
+			vim.lsp.buf.code_action({
+				context = { only = { "source.fixAll" }, diagnostics = {} },
+				apply = true,
+				bufnr = bufnr,
+			})
+			vim.lsp.buf.format({ bufnr = bufnr, name = "gopls", async = false })
+		else
+			local efm = vim.lsp.get_clients({ name = "efm" })
+			if vim.tbl_isempty(efm) then
+				return
+			end
+			vim.lsp.buf.format({ name = "efm", async = true })
 		end
-		vim.lsp.buf.format({ name = "efm", async = true })
 	end,
 })
 

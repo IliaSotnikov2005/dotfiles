@@ -10,5 +10,25 @@ return function(capabilities)
 	vim.lsp.config('gopls', {
 		capabilities = capabilities,
 		filetypes = { "go" },
+		settings = {
+			gopls = {
+				gofumpt = true,
+				staticcheck = true,
+				analyses = {
+					unusedvariable = true,
+					unusedparams = true,
+					shadow = true,
+				},
+				hints = {
+					assignVariableTypes = true,
+					compositeLiteralFields = true,
+					compositeLiteralTypes = true,
+					constantValues = true,
+					functionTypeParameters = true,
+					parameterNames = true,
+					rangeVariableTypes = true,
+				},
+			},
+		},
 	})
 end

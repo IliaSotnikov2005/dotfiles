@@ -13,7 +13,7 @@ return function(capabilities)
 	local stylua = require("efmls-configs.formatters.stylua") -- lua formatter
 	local flake8 = require("efmls-configs.linters.flake8") -- python linter
 	local black = require("efmls-configs.formatters.black") -- python formatter
-	local go_revive = require("efmls-configs.linters.go_revive") -- go linter
+	local golangci_lint = require("efmls-configs.linters.golangci_lint") -- go linter
 	local gofumpt = require("efmls-configs.formatters.gofumpt") -- go formatter
 	local prettier_d = require("efmls-configs.formatters.prettier_d") -- ts/js/solidity/json/docker/html/css/react/svelte/vue formatter
 	local eslint_d = require("efmls-configs.linters.eslint_d") -- ts/js/solidity/json/react/svelte/vue linter
@@ -62,7 +62,7 @@ return function(capabilities)
 				cpp = { clangformat, cpplint },
 				css = { prettier_d },
 				docker = { hadolint, prettier_d },
-				go = { gofumpt, go_revive },
+				go = { gofumpt, golangci_lint },
 				html = { prettier_d },
 				javascript = { eslint_d, prettier_d },
 				javascriptreact = { eslint_d, prettier_d },

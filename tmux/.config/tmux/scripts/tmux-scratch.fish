@@ -3,13 +3,12 @@
 set -l session "_popup_scratchpad"
 
 if not tmux has-session -t "$session" 2>/dev/null
-    set -l session_id (tmux new-session -dP -s "$session" -F '#{session_id}')
-
-    tmux set-option -t "$session_id" key-table popup
-    tmux set-option -t "$session_id" status off
-    tmux set-option -t "$session_id" prefix None
-
-    set session "$session_id"
+    tmux new-session -d -s "$session"
 end
 
+tmux set-option -t "$session" key-table popup
+tmux set-option -t "$session" status off
+tmux set-option -t "$session" prefix None
+
+set -e TMUX
 exec tmux attach-session -t "$session" >/dev/null
