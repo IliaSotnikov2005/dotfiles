@@ -1,3 +1,3 @@
 #!/bin/sh
-unset TMUX
-exec tmux attach-session -t _popup_scratchpad >/dev/null 2>&1
+TMUX=
+exec tmux new-session -A -s _popup_scratchpad
