@@ -2,8 +2,8 @@
 set -euo pipefail
 
 FONT_DIR="$HOME/.local/share/fonts"
-FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.tar.xz"
-FONT_ARCHIVE="JetBrainsMono.tar.xz"
+FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip"
+FONT_ARCHIVE="JetBrainsMono.zip"
 
 echo "=== Installing JetBrains Mono Nerd Font ==="
 
@@ -16,7 +16,7 @@ echo "Downloading JetBrains Mono Nerd Font..."
 curl -fSL "$FONT_URL" -o "$TMP_DIR/$FONT_ARCHIVE"
 
 echo "Extracting..."
-tar -xf "$TMP_DIR/$FONT_ARCHIVE" -C "$FONT_DIR"
+unzip -o "$TMP_DIR/$FONT_ARCHIVE" -d "$FONT_DIR"
 
 echo "Updating font cache..."
 fc-cache -fv "$FONT_DIR" >/dev/null 2>&1

@@ -16,7 +16,7 @@
 | --------------------------- | --------------------------------------------------------------------------------- |
 | **ttf-jetbrains-mono-nerd** | Шрифт JetBrains Mono с иконками Nerd Font (нужен для kitty, tmux, nvim, noctalia) |
 | **niri**                    | Scrollable-tiling Wayland-композитор                                              |
-| **noctalia-shell**          | Минималистичный desktop shell для Wayland (бар, лаунчер, виджеты, обои)           |
+| **noctalia**                 | Desktop shell для Wayland (бар, лаунчер, виджеты, обои)                           |
 | **kitty**                   | GPU-ускоренный терминал                                                           |
 | **fish**                    | PowerShell-подобная оболочка с автодополнениями                                   |
 | **tmux**                    | Мультиплексор терминала                                                           |
@@ -33,14 +33,3 @@
 | **grim + slurp**            | Скриншоты в Wayland                                                               |
 | **brightnessctl**           | Управление яркостью экрана                                                        |
 | **wlr-randr**               | Управление мониторами в wlroots                                                   |
-
-## Дополнительные зависимости
-
-Для работы noctalia-shell также потребуются:
-
-- `quickshell` — QtQuick-based shell toolkit (ноctalia-qs — его форк)
-- `imagemagick` — обработка изображений
-- `ffmpeg` — аудио/видео (для визуализатора)
-- `qt6-multimedia` — мультимедиа виджеты
-- `python` — скрипты noctalia
-- `wlr-randr` — управление мониторами

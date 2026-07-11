@@ -51,7 +51,7 @@ ask "zoxide" "Smart cd — remembers your directories" "Typing 'z project' jumps
 # ─── Niri + Noctalia ───
 ask "niri" "Scrollable-tiling Wayland compositor" "Tiling WM, similar to sway but scrollable."
 
-ask "noctalia" "Desktop shell for Wayland (bar, launcher, widgets, wallpaper)" "Requires niri. Built on quickshell (noctalia-qs)."
+ask "noctalia" "Desktop shell for Wayland (bar, launcher, widgets, wallpaper)" "Requires niri. Available in Fedora repos."
 
 # ─── Terminal + Editor ───
 ask "kitty" "GPU-accelerated terminal emulator" "Fast, extensible, supports ligatures and images."
@@ -82,7 +82,6 @@ install_with_dnf() {
         case "$pkg" in
             grim+slurp) dnf_pkgs+=(grim slurp) ;;
             nerd-fonts) ;; # handled separately
-            noctalia)   ;; # handled separately
             lazygit)    ;; # handled separately (needs COPR)
             *)          dnf_pkgs+=("$pkg") ;;
         esac
@@ -125,14 +124,7 @@ for pkg in "${PACKAGES[@]}"; do
     fi
 done
 
-# Group 4: Noctalia
-for pkg in "${PACKAGES[@]}"; do
-    if [ "$pkg" = "noctalia" ]; then
-        bash "$SCRIPT_DIR/scripts/install-noctalia.sh"
-    fi
-done
-
-# Group 5: Fish plugins (via fisher)
+# Group 4: Fish plugins (via fisher)
 for pkg in "${PACKAGES[@]}"; do
     if [ "$pkg" = "fish" ]; then
         echo ""
