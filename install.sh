@@ -36,4 +36,21 @@ if [ -d "$HOME/.config/niri.bak/cfg" ]; then
     cp "$HOME/.config/niri.bak/cfg/input.kdl" "$HOME/.config/niri/cfg/" 2>/dev/null
 fi
 
+NIRI_CFG="$HOME/.config/niri/cfg"
+if [ ! -f "$NIRI_CFG/display.kdl" ]; then
+    echo "display.kdl not found, generating default..."
+    niri msg --help >/dev/null 2>&1 || true
+    if command -v wlr-randr &>/dev/null; then
+        MON=$(wlr-randr 2>/dev/null | head -1 | tr -d ':')
+    fi
+    MON="${MON:-eDP-1}"
+    cat > "$NIRI_CFG/display.kdl" <<EOF
+output "${MON}" {
+    mode "1920x1080@60.000"
+    scale 1
+}
+EOF
+    echo "Generated $NIRI_CFG/display.kdl — edit it for your monitor."
+fi
+
 echo "Installation complete."
