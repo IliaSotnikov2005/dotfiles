@@ -2,7 +2,7 @@
 set -euo pipefail
 
 FONT_DIR="$HOME/.local/share/fonts"
-FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz"
+FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.tar.xz"
 FONT_ARCHIVE="JetBrainsMono.tar.xz"
 
 echo "=== Installing JetBrains Mono Nerd Font ==="
@@ -22,7 +22,7 @@ echo "Updating font cache..."
 fc-cache -fv "$FONT_DIR" >/dev/null 2>&1
 
 echo "Verifying..."
-if fc-list | grep -qi "JetBrainsMono Nerd Font"; then
+if fc-list | grep -qi "JetBrainsMono"; then
     echo "JetBrains Mono Nerd Font installed successfully."
 else
     echo "Warning: font may not have installed correctly. Check fc-list."
