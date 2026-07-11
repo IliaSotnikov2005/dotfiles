@@ -1,10 +1,24 @@
 #!/usr/bin/env bash
 
-apps=("nvim" "kitty" "fish" "tmux" "lazygit" "niri")
+apps=("nvim" "kitty" "fish" "tmux" "lazygit" "niri" "noctalia" "git")
 
 echo "Installing..."
 
 for app in "${apps[@]}"; do
+    if [ "$app" = "git" ]; then
+        TARGET="$HOME/.gitconfig"
+        SOURCE="$(dirname "$0")/git/.gitconfig"
+
+        if [ -e "$TARGET" ] && [ ! -L "$TARGET" ]; then
+            echo "Backup existing $TARGET to $TARGET.bak"
+            mv "$TARGET" "$TARGET.bak"
+        fi
+
+        echo "Symlink git config"
+        ln -sf "$SOURCE" "$TARGET"
+        continue
+    fi
+
     TARGET="$HOME/.config/$app"
 
     if [ -e "$TARGET" ] && [ ! -L "$TARGET" ]; then
