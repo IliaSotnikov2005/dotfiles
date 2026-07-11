@@ -1,0 +1,23 @@
+input {
+    keyboard {
+        // Настройка раскладки (добавь свои, если нужно)
+        xkb {
+            layout "us,ru"
+            options "grp:alt_shift_toggle,caps:escape"
+        }
+    }
+
+    touchpad {
+        tap
+        dwt
+        natural-scroll
+    }
+
+    mouse {
+        // accel-speed 0.2
+        // accel-profile "flat"
+    }
+
+    // Фокус следует за мышью
+    focus-follows-mouse
+}
