@@ -37,10 +37,6 @@ echo ""
 # ─── Core ───
 ask "stow" "GNU Stow — symlink manager for dotfiles" "Required to install dotfiles from this repo."
 
-ask "git" "Version control system" "Needed for dotfiles, lazygit, nvim plugins."
-
-ask "curl" "HTTP client" "Used to download fonts and other assets."
-
 # ─── Shell ───
 ask "fish" "Friendly interactive shell" "Default shell with autocompletions, syntax highlighting, sane defaults."
 
@@ -66,17 +62,6 @@ ask "tmux" "Terminal multiplexer" "Panes, sessions, persistent workflow."
 
 ask "lazygit" "TUI for git" "Visual git interface in terminal."
 
-# ─── Wayland utilities ───
-ask "wl-clipboard" "Wayland clipboard utilities (wl-copy, wl-paste)" "Required for copy/paste in Wayland."
-
-ask "cliphist" "Clipboard history" "Stores clipboard history, works with wl-paste. Used in noctalia."
-
-ask "grim+slurp" "Screenshot tools for Wayland" "grim captures, slurp selects region."
-
-ask "brightnessctl" "Screen brightness control" "Required for brightness keys in noctalia."
-
-ask "wlr-randr" "Monitor configuration tool" "Required by noctalia for multi-monitor."
-
 # ─── Fonts ───
 ask "nerd-fonts" "JetBrains Mono Nerd Font" "Required by kitty, tmux, nvim, noctalia for icons."
 
@@ -98,6 +83,7 @@ install_with_dnf() {
             grim+slurp) dnf_pkgs+=(grim slurp) ;;
             nerd-fonts) ;; # handled separately
             noctalia)   ;; # handled separately
+            lazygit)    ;; # handled separately (needs COPR)
             *)          dnf_pkgs+=("$pkg") ;;
         esac
     done
@@ -122,14 +108,24 @@ esac
 # Group 1: dnf packages
 install_with_dnf "${PACKAGES[@]}"
 
-# Group 2: Nerd Fonts
+# Group 2: Lazygit (COPR)
+for pkg in "${PACKAGES[@]}"; do
+    if [ "$pkg" = "lazygit" ]; then
+        echo ""
+        echo "Installing lazygit from COPR..."
+        sudo dnf copr enable atim/lazygit -y
+        sudo dnf install -y lazygit
+    fi
+done
+
+# Group 3: Nerd Fonts
 for pkg in "${PACKAGES[@]}"; do
     if [ "$pkg" = "nerd-fonts" ]; then
         bash "$SCRIPT_DIR/scripts/install-fonts.sh"
     fi
 done
 
-# Group 3: Noctalia
+# Group 4: Noctalia
 for pkg in "${PACKAGES[@]}"; do
     if [ "$pkg" = "noctalia" ]; then
         bash "$SCRIPT_DIR/scripts/install-noctalia.sh"
