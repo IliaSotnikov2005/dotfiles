@@ -19,6 +19,17 @@ for app in "${apps[@]}"; do
         continue
     fi
 
+    if [ "$app" = "noctalia" ]; then
+        NIRI_STATE="$HOME/.local/state/noctalia"
+        if [ -e "$NIRI_STATE/settings.toml" ] && [ ! -L "$NIRI_STATE/settings.toml" ]; then
+            echo "Backup existing noctalia state to $NIRI_STATE.bak"
+            cp "$NIRI_STATE/settings.toml" "$NIRI_STATE/settings.toml.bak" 2>/dev/null
+        fi
+        echo "Stow noctalia"
+        stow noctalia
+        continue
+    fi
+
     TARGET="$HOME/.config/$app"
 
     if [ -e "$TARGET" ] && [ ! -L "$TARGET" ]; then
