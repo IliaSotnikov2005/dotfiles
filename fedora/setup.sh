@@ -48,8 +48,6 @@ ask "eza" "Modern replacement for ls" "Colors, icons, tree view, git status."
 
 ask "bat" "Cat replacement with syntax highlighting" "Used in fish for man pages (MANPAGER)."
 
-ask "fastfetch" "System info tool" "Shows on fish greeting (like neofetch but faster)."
-
 ask "fzf" "Fuzzy finder" "Used in tmux-menu, nvim (fzf-lua), and command history."
 
 ask "zoxide" "Smart cd — remembers your directories" "Typing 'z project' jumps to ~/Projects."

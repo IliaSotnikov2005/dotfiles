@@ -4,7 +4,6 @@
 
 # ─── Greeting ───
 function fish_greeting
-    fastfetch 2>/dev/null; or echo "Welcome, $USER"
 end
 
 # ─── Environment ───
