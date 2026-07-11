@@ -132,6 +132,22 @@ for pkg in "${PACKAGES[@]}"; do
     fi
 done
 
+# Group 5: Fish plugins (via fisher)
+for pkg in "${PACKAGES[@]}"; do
+    if [ "$pkg" = "fish" ]; then
+        echo ""
+        echo "Installing fish plugins via fisher..."
+        if ! command -v fish &>/dev/null; then
+            echo "  fish not found, skipping fish plugins."
+        else
+            fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher" 2>/dev/null || true
+            fish -c "fisher install jorgebucaran/autopair.fish" 2>/dev/null || true
+            fish -c "fisher install pure-fish/pure" 2>/dev/null || true
+            echo "  fish plugins installed."
+        fi
+    fi
+done
+
 echo ""
 echo "========================================="
 echo "  Installation complete!"
