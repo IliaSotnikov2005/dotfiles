@@ -29,6 +29,7 @@
 | **fd**                      | Быстрый find (используется в nvim и fzf)                                          |
 | **zoxide**                  | Умный cd (запоминает частые директории)                                           |
 | **yazi**                    | TUI-файловый менеджер с превью картинок                                           |
+| **btop**                    | TUI-системный монитор с vim-клавиатурой (hjkl)                                    |
 | **cliphist**                | История буфера обмена (wl-paste + clipboard history)                              |
 | **wl-clipboard**            | Копирование/вставка в Wayland (wl-copy, wl-paste)                                 |
 | **grim + slurp**            | Скриншоты в Wayland                                                               |

@@ -50,6 +50,8 @@ ask "zoxide" "Smart cd — remembers your directories" "Typing 'z project' jumps
 
 ask "yazi" "Terminal file manager" "Blazing fast TUI file manager with image preview."
 
+ask "btop" "Resource monitor" "TUI system monitor with vim keybindings (hjkl)."
+
 # ─── Niri + Noctalia ───
 ask "niri" "Scrollable-tiling Wayland compositor" "Tiling WM, similar to sway but scrollable."
 
