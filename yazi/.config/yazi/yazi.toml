@@ -1,0 +1,18 @@
+[opener]
+edit = [{ run = "$EDITOR %s", block = true }]
+
+[open]
+prepend_rules = [
+	{ mime = "text/*", use = "edit" },
+	{ url = "*.md",    use = "edit" },
+]
+
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"

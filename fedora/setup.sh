@@ -128,7 +128,7 @@ for pkg in "${PACKAGES[@]}"; do
     fi
 done
 
-# Group 4: Fish plugins (via fisher)
+# Group 5: Fish plugins (via fisher)
 for pkg in "${PACKAGES[@]}"; do
     if [ "$pkg" = "fish" ]; then
         echo ""
@@ -140,6 +140,21 @@ for pkg in "${PACKAGES[@]}"; do
             fish -c "fisher install jorgebucaran/autopair.fish" 2>/dev/null || true
             fish -c "fisher install pure-fish/pure" 2>/dev/null || true
             echo "  fish plugins installed."
+        fi
+    fi
+done
+
+# Group 6: Yazi plugins (via ya pkg)
+for pkg in "${PACKAGES[@]}"; do
+    if [ "$pkg" = "yazi" ]; then
+        echo ""
+        echo "Installing yazi plugins..."
+        if command -v ya &>/dev/null; then
+            ya pkg add yazi-rs/plugins:git 2>/dev/null || true
+            ya pkg add yazi-rs/plugins:full-border 2>/dev/null || true
+            echo "  yazi plugins installed."
+        else
+            echo "  ya not found, skipping yazi plugins."
         fi
     fi
 done

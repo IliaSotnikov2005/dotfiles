@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-apps=("nvim" "kitty" "fish" "tmux" "lazygit" "niri" "noctalia" "btop" "git")
+apps=("nvim" "kitty" "fish" "tmux" "lazygit" "niri" "noctalia" "btop" "yazi" "git")
 
 echo "Installing..."
 

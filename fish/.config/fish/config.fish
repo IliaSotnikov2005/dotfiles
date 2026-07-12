@@ -8,6 +8,7 @@ end
 
 # ─── Environment ───
 set -gx PATH ~/.local/bin ~/.cargo/bin $PATH
+set -gx EDITOR nvim
 
 # Man pages with bat
 set -x MANROFFOPT "-c"
