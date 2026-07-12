@@ -48,6 +48,8 @@ ask "fzf" "Fuzzy finder" "Used in tmux-menu, nvim (fzf-lua), and command history
 
 ask "zoxide" "Smart cd — remembers your directories" "Typing 'z project' jumps to ~/Projects."
 
+ask "yazi" "Terminal file manager" "Blazing fast TUI file manager with image preview."
+
 # ─── Niri + Noctalia ───
 ask "niri" "Scrollable-tiling Wayland compositor" "Tiling WM, similar to sway but scrollable."
 
