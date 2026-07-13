@@ -50,7 +50,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 				apply = true,
 				bufnr = bufnr,
 			})
-			vim.lsp.buf.format({ bufnr = bufnr, name = "gopls", async = false })
+			local efm = vim.lsp.get_clients({ name = "efm" })
+			if not vim.tbl_isempty(efm) then
+				vim.lsp.buf.format({ bufnr = bufnr, name = "efm", async = false })
+			end
 		else
 			local efm = vim.lsp.get_clients({ name = "efm" })
 			if vim.tbl_isempty(efm) then

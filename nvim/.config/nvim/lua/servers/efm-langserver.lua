@@ -15,6 +15,8 @@ return function(capabilities)
 	local black = require("efmls-configs.formatters.black") -- python formatter
 	local golangci_lint = require("efmls-configs.linters.golangci_lint") -- go linter
 	local gofumpt = require("efmls-configs.formatters.gofumpt") -- go formatter
+	local golines = require("efmls-configs.formatters.golines") -- go line length formatter
+	golines.formatCommand = "golines --max-len=120"
 	local prettier_d = require("efmls-configs.formatters.prettier_d") -- ts/js/solidity/json/docker/html/css/react/svelte/vue formatter
 	local eslint_d = require("efmls-configs.linters.eslint_d") -- ts/js/solidity/json/react/svelte/vue linter
 	local fixjson = require("efmls-configs.formatters.fixjson") -- json formatter
@@ -62,7 +64,7 @@ return function(capabilities)
 				cpp = { clangformat, cpplint },
 				css = { prettier_d },
 				docker = { hadolint, prettier_d },
-				go = { gofumpt, golangci_lint },
+				go = { gofumpt, golines, golangci_lint },
 				html = { prettier_d },
 				javascript = { eslint_d, prettier_d },
 				javascriptreact = { eslint_d, prettier_d },
