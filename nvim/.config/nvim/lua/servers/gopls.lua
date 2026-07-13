@@ -12,7 +12,7 @@ return function(capabilities)
 		filetypes = { "go" },
 		settings = {
 			gopls = {
-				gofumpt = true,
+				gofumpt = false,
 				staticcheck = true,
 				analyses = {
 					unusedvariable = true,
