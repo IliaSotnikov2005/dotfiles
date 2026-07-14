@@ -4,5 +4,14 @@
 **/undo/*
 
 **/display.kdl
-**/input.kdl
+
+# noctalia v5 state files (only settings.toml is tracked)
+noctalia/.local/state/noctalia/clipboard/
+noctalia/.local/state/noctalia/community-palettes/
+noctalia/.local/state/noctalia/community-templates/
+noctalia/.local/state/noctalia/plugins/
+noctalia/.local/state/noctalia/notification_history.json
+noctalia/.local/state/noctalia/recently_used.json
+noctalia/.local/state/noctalia/usage_counts.json
+noctalia/.local/state/noctalia/.setup-complete
 

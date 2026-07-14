@@ -1,0 +1,87 @@
+config_version = 1
+
+[bar.default]
+background_opacity = 0.35999999195337296
+end = [ "media", "tray", "network", "bluetooth", "volume", "brightness", "notifications", "battery" ]
+margin_ends = 0
+radius = 0
+shadow = false
+start = [ "workspaces" ]
+
+[battery]
+warning_threshold = 15
+
+[control_center]
+hidden_tabs = [ "audio", "monitor" ]
+width = 600
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "power_profile"
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 24
+    major_interval = 4
+    visible = true
+
+[location]
+address = "St. Petersburg"
+auto_locate = true
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = []
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+[shell]
+corner_radius_scale = 2.0
+niri_overview_type_to_launch_enabled = true
+password_style = "random"
+
+    [shell.animation]
+    speed = 1.4500000216066837
+
+    [shell.launcher]
+    categories = false
+    compact = true
+
+    [shell.panel]
+    borders = false
+    open_near_click_control_center = true
+    open_near_click_launcher = true
+    open_near_click_session = true
+    shadow = false
+    transparency_mode = "soft"
+
+    [shell.shadow]
+    alpha = 0.13999999687075615
+
+[theme]
+custom_palette = "beautiful-shot-top-mountain-mc"
+mode = "light"
+source = "custom"
+
+    [theme.templates]
+    enable_builtin_templates = false
+    enable_community_templates = false
+
+[wallpaper]
+directory = "~/Pictures/Wallpapers"
+transition_on_startup = true
