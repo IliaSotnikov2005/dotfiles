@@ -22,9 +22,6 @@ require("servers.yamlls")(capabilities)
 require("servers.tailwindcss")(capabilities)
 require("servers.solidity_ls_nomicfoundation")(capabilities)
 
--- Linters & Formatters
-require("servers.efm-langserver")(capabilities)
-
 vim.lsp.enable({
 	"lua_ls",
 	"pyright",
@@ -40,5 +37,4 @@ vim.lsp.enable({
 	"yamlls",
 	"tailwindcss",
 	"solidity_ls_nomicfoundation",
-	"efm",
 })

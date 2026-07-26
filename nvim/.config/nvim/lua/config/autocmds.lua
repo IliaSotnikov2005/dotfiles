@@ -30,40 +30,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- format on save using efm langserver and configured formatters
-local lsp_fmt_group = vim.api.nvim_create_augroup("FormatOnSaveGroup", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = lsp_fmt_group,
-	callback = function()
-		require("mini.trailspace").trim()
-
-		local ft = vim.bo.filetype
-		if ft == "go" then
-			local bufnr = vim.api.nvim_get_current_buf()
-			vim.lsp.buf.code_action({
-				context = { only = { "source.organizeImports" }, diagnostics = {} },
-				apply = true,
-				bufnr = bufnr,
-			})
-			vim.lsp.buf.code_action({
-				context = { only = { "source.fixAll" }, diagnostics = {} },
-				apply = true,
-				bufnr = bufnr,
-			})
-			local efm = vim.lsp.get_clients({ name = "efm" })
-			if not vim.tbl_isempty(efm) then
-				vim.lsp.buf.format({ bufnr = bufnr, name = "efm", async = false })
-			end
-		else
-			local efm = vim.lsp.get_clients({ name = "efm" })
-			if vim.tbl_isempty(efm) then
-				return
-			end
-			vim.lsp.buf.format({ name = "efm", async = true })
-		end
-	end,
-})
-
 -- on attach function shortcuts
 local lsp_on_attach_group = vim.api.nvim_create_augroup("LspMappings", {})
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -93,18 +59,12 @@ local group = vim.api.nvim_create_augroup("QuietAutoSave", { clear = true })
 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
 	group = group,
 	callback = function()
-		-- 1. vim.bo.modified: файл был изменен
-		-- 2. vim.bo.buftype == "": это обычный файл (не терминал, не NvimTree, не Telescope)
-		-- 3. vim.fn.expand("%") ~= "": у файла есть имя (он не "No Name")
-		-- 4. vim.fn.filereadable: файл уже существует на диске (чтобы не сохранять новые пустые черновики без спроса)
 		if
 			vim.bo.modified
 			and vim.bo.buftype == ""
 			and vim.fn.expand("%") ~= ""
 			and vim.fn.filereadable(vim.fn.expand("%")) == 1
 		then
-			-- Используем silent! чтобы не спамить в статусную строку
-			-- update сохраняет только если файл был изменен (лучше чем write)
 			vim.cmd("silent! update")
 		end
 	end,

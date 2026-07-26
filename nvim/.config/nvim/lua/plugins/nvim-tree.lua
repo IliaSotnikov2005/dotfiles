@@ -26,7 +26,7 @@ return {
 			actions = {
 				change_dir = {
 					enable = true,
-					global = true, -- использовать :cd (глобально), не :lcd (локально)
+					global = true,
 				},
 			},
 			diagnostics = {
@@ -40,11 +40,18 @@ return {
 				},
 			},
 			filters = {
-				dotfiles = false,   -- show hidden files (dotfiles)
-				git_ignored = false, -- show gitignored files (like .env)
+				dotfiles = false,
+				git_ignored = false,
+			},
+			view = {
+				width = 35,
+				adaptive_size = false,
+				side = "left",
 			},
 			renderer = {
 				highlight_diagnostics = true,
+				indent_width = 2,
+				full_name = true,
 				icons = {
 					glyphs = {
 						git = {
@@ -58,9 +65,6 @@ return {
 						},
 					},
 				},
-			},
-			view = {
-				adaptive_size = true,
 			},
 		})
 	end,

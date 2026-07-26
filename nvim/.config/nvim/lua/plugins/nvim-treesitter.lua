@@ -9,11 +9,13 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	commit = "90cd658",
 	main = "nvim-treesitter",
-	-- build = ":TSUpdate",
 	event = { "BufReadPost", "BufNewFile" },
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		"nvim-treesitter/nvim-treesitter-context",
+	},
 	init = function()
 		local highlight = function(bufnr, lang)
-			-------------------[ treesitter highlights ]-------------------------------
 			if not vim.treesitter.language.add(lang) then
 				return vim.notify(
 					string.format("Treesitter cannot load parser for language: %s", lang),
@@ -32,14 +34,12 @@ return {
 
 				if bt ~= "" then
 					return
-				end -- don't run further.
+				end
 
 				local ok, treesitter = pcall(require, "nvim-treesitter")
 				if not ok then
 					return
 				end
-
-				--------------------[ treesitter folds ]-------------------------------
 
 				if ft == "javascriptreact" or ft == "typescriptreact" then
 					vim.opt_local.foldmethod = "indent"
@@ -49,19 +49,15 @@ return {
 				end
 
 				vim.schedule(function()
-					-- Only run normal if we're not in terminal mode
 					if vim.fn.mode() ~= "t" then
 						vim.cmd("silent! normal! zx")
 					end
 				end)
 
-				---------------------[ treesitter indent ]-------------------------------
-
 				if not vim.tbl_contains({ "python", "html", "yaml", "markdown" }, ft) then
 					vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
 				end
 
-				--------------------[ treesitter parsers ]-------------------------------
 				if vim.fn.executable("tree-sitter") ~= 1 then
 					vim.api.nvim_echo({
 						{
@@ -95,6 +91,52 @@ return {
 			"regex",
 			"vimdoc",
 		},
+		textobjects = {
+			select = {
+				enable = true,
+				lookahead = true,
+				keymaps = {
+					["af"] = "@function.outer",
+					["if"] = "@function.inner",
+					["ac"] = "@class.outer",
+					["ic"] = "@class.inner",
+					["ao"] = "@loop.outer",
+					["io"] = "@loop.inner",
+					["a?"] = "@conditional.outer",
+					["i?"] = "@conditional.inner",
+					["aa"] = "@parameter.outer",
+					["ia"] = "@parameter.inner",
+				},
+			},
+			move = {
+				enable = true,
+				set_jumps = true,
+				goto_next_start = {
+					["]f"] = "@function.outer",
+					["]c"] = "@class.outer",
+					["]o"] = "@loop.outer",
+					["]a"] = "@parameter.inner",
+				},
+				goto_next_end = {
+					["]F"] = "@function.outer",
+					["]C"] = "@class.outer",
+					["]O"] = "@loop.outer",
+					["]A"] = "@parameter.inner",
+				},
+				goto_previous_start = {
+					["[f"] = "@function.outer",
+					["[c"] = "@class.outer",
+					["[o"] = "@loop.outer",
+					["[a"] = "@parameter.inner",
+				},
+				goto_previous_end = {
+					["[F"] = "@function.outer",
+					["[C"] = "@class.outer",
+					["[O"] = "@loop.outer",
+					["[A"] = "@parameter.inner",
+				},
+			},
+		},
 	},
 	config = function(_, opts)
 		local treesitter = require("nvim-treesitter")
@@ -109,5 +151,19 @@ return {
 			return false
 		end
 		treesitter.install(opts.install)
+
+		require("treesitter-context").setup({
+			enable = true,
+			max_lines = 3,
+			trim_scope = "outer",
+			patterns = {
+				lua = { "function", "if_statement", "for_statement", "while_statement" },
+				python = { "function_definition", "class_definition" },
+				go = { "function_declaration", "method_declaration" },
+				typescript = { "function", "arrow_function", "class", "interface" },
+				javascript = { "function", "arrow_function", "class" },
+				rust = { "function_item", "impl_item", "trait_item" },
+			},
+		})
 	end,
 }

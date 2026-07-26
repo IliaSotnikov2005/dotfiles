@@ -22,7 +22,14 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" }
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
+-- Black hole register — d/c/x не затирают буфер обмена
+vim.keymap.set("n", "d", '"_d', { desc = "Delete (black hole)" })
+vim.keymap.set("n", "dd", '"_dd', { desc = "Delete line (black hole)" })
+vim.keymap.set("n", "x", '"_x', { desc = "Delete char (black hole)" })
+vim.keymap.set("n", "c", '"_c', { desc = "Change (black hole)" })
+vim.keymap.set("n", "cc", '"_cc', { desc = "Change line (black hole)" })
+vim.keymap.set("x", "d", '"_d', { desc = "Delete selection (black hole)" })
+vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
 vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
 
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
@@ -88,3 +95,23 @@ vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode with jj" })
 vim.keymap.set("n", "<leader>cp", "<cmd>Shades<cr>", { desc = "ColorPicker" })
 vim.keymap.set("n", "<leader>cg", "<cmd>Huefy<cr>", { desc = "Generate palette" })
 vim.keymap.set("i", "<C-c>p", "<cmd>Shades<cr>", { desc = "ColorPicker" })
+
+-- LSP restart
+vim.keymap.set("n", "<leader>lr", function()
+	vim.cmd("LspStop")
+	vim.defer_fn(function()
+		vim.cmd("LspStart")
+		vim.notify("LSP restarted", vim.log.levels.INFO, { title = "LSP" })
+	end, 500)
+end, { desc = "Restart LSP" })
+
+-- Copy full file path to clipboard
+vim.keymap.set("n", "<leader>fp", function()
+	local path = vim.fn.expand("%:p")
+	if path == "" then
+		vim.notify("No file path", vim.log.levels.WARN)
+		return
+	end
+	vim.fn.setreg("+", path)
+	vim.notify("Copied: " .. path, vim.log.levels.INFO)
+end, { desc = "Copy full file path" })

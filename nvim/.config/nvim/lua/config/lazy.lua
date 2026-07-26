@@ -31,11 +31,26 @@ require("config.options")
 require("config.keymaps")
 require("config.autocmds")
 
-local plugins_dir = "plugins"
+-- Disable built-in plugins we don't use
+vim.g.loaded_gzip = 1
+vim.g.loaded_matchit = 1
+vim.g.loaded_matchparen = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_tohtml = 1
+vim.g.loaded_tutor = 1
+vim.g.loaded_zip = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_2html_plugin = 1
+vim.g.loaded_vimball = 1
+vim.g.loaded_vimballPlugin = 1
 
 require("lazy").setup({
 	spec = {
-		{ import = plugins_dir },
+		{ import = "plugins" },
+		{ import = "plugins.lang" },
 	},
 	rtp = {
 		disabled_plugins = {
@@ -45,13 +60,11 @@ require("lazy").setup({
 	},
 	install = {
 		colorscheme = {
-			-- "melange"
-			"nightfox,",
+			"nightfox",
 		},
 	},
 	checker = { enabled = true },
 })
 
 vim.opt.termguicolors = true
--- Настройка цвета виртуального текста подсказок
 vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#545c7e", italic = true, bg = "none" })

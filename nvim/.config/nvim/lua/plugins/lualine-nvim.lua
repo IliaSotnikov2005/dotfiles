@@ -38,7 +38,11 @@ return {
 					},
 				},
 				lualine_c = {
-					{ "filename" },
+					{
+						"filename",
+						path = 1,
+						color = { fg = "#cccccc" },
+					},
 				},
 
 				lualine_x = {

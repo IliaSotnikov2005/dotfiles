@@ -23,6 +23,10 @@ return {
 			options = {
 				mode = "buffers",
 				always_show_bufferline = false,
+				max_name_length = 30,
+				max_prefix_length = 20,
+				tab_size = 25,
+				truncate_names = false,
 
 				separator_style = "thin",
 
