@@ -23,12 +23,15 @@ return {
 			update_focused_file = {
 				enable = true,
 			},
-			actions = {
-				change_dir = {
-					enable = true,
-					global = true,
-				},
+		actions = {
+			open_file = {
+				resize_window = false,
 			},
+			change_dir = {
+				enable = true,
+				global = true,
+			},
+		},
 			diagnostics = {
 				enable = true,
 				show_on_dirs = true,
