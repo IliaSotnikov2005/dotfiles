@@ -11,7 +11,7 @@ binds {
     // ─── Applications ───
     Mod+Return                          hotkey-overlay-title="Open Terminal: Kitty" { spawn "kitty"; }
     Mod+D                     hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
-    Mod+B                               hotkey-overlay-title="Open Browser: firefox" { spawn "firefox"; }
+    Mod+B                               hotkey-overlay-title="Open Browser: zen" { spawn "zen-browser"; }
     Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn "noctalia" "msg" "session" "lock"; }
     Mod+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn "noctalia" "msg" "panel-toggle" "session-menu"; }
 
