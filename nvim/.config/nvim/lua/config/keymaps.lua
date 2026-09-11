@@ -2,8 +2,6 @@
 -- TITLE: NeoVim keymaps
 -- ABOUT: sets some quality-of-life keymaps
 -- ================================================================================================
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Quick config editing
 vim.keymap.set("n", "<leader>rc", "<Cmd>e ~/.config/nvim/init.lua<CR>", { desc = "Edit config" })
@@ -30,7 +28,7 @@ vim.keymap.set("n", "c", '"_c', { desc = "Change (black hole)" })
 vim.keymap.set("n", "cc", '"_cc', { desc = "Change line (black hole)" })
 vim.keymap.set("x", "d", '"_d', { desc = "Delete selection (black hole)" })
 vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
-vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
+vim.keymap.set("v", "<leader>x", '"_d', { desc = "Delete without yanking" })
 
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
@@ -67,12 +65,6 @@ end, { desc = "Delete buffer (close)" })
 
 -- Fast save
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
-
-vim.keymap.set("n", "<leader>pa", function()
-	local path = vim.fn.expand("%:p")
-	vim.fn.setreg("+", path)
-	print("file:", path)
-end, { desc = "Copy full file path" })
 
 vim.keymap.set("n", "<leader>e", function()
 	if require("zen-mode.view").is_open() then

@@ -7,26 +7,8 @@ return {
 	},
 	opts = {
 		formatters_by_ft = {
-			lua = { "stylua" },
-			python = { "isort", "black" },
-			go = { "gofumpt", "goimports", "golines" },
-			javascript = { "prettierd", "eslint_d" },
-			typescript = { "prettierd", "eslint_d" },
-			javascriptreact = { "prettierd", "eslint_d" },
-			typescriptreact = { "prettierd", "eslint_d" },
-			json = { "prettierd", "fixjson" },
-			jsonc = { "prettierd", "fixjson" },
-			css = { "prettierd" },
-			html = { "prettierd" },
 			markdown = { "prettierd" },
-			sh = { "shfmt" },
-			bash = { "shfmt" },
-			c = { "clang-format" },
-			cpp = { "clang-format" },
-			solidity = { "prettierd" },
 			svelte = { "prettierd" },
-			vue = { "prettierd" },
-			yaml = { "prettierd" },
 		},
 		formatters = {
 			golines = {

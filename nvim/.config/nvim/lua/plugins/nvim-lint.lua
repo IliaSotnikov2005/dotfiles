@@ -1,10 +1,8 @@
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPre", "BufNewFile" },
-	config = function()
-		local lint = require("lint")
-
-		lint.linters_by_ft = {
+	opts = {
+		linters_by_ft = {
 			lua = { "luacheck" },
 			python = { "flake8" },
 			go = { "golangci-lint" },
@@ -12,7 +10,6 @@ return {
 			typescript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
-			json = { "eslint_d" },
 			solidity = { "solhint" },
 			sh = { "shellcheck" },
 			bash = { "shellcheck" },
@@ -20,7 +17,12 @@ return {
 			cpp = { "cpplint" },
 			docker = { "hadolint" },
 			markdown = { "markdownlint" },
-		}
+		},
+	},
+	config = function(_, opts)
+		local lint = require("lint")
+
+		lint.linters_by_ft = opts.linters_by_ft
 
 		local function get_available_linters()
 			local ft = vim.bo.filetype

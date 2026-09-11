@@ -28,7 +28,6 @@ vim.lsp.enable({
 	"gopls",
 	"jsonls",
 	"ts_ls",
-	"vue_ls",
 	"fishls",
 	"clangd",
 	"dockerls",

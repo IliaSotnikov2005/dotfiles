@@ -1,56 +1,5 @@
 return {
 	{
-		"neovim/nvim-lspconfig",
-		opts = {
-			servers = {
-				ts_ls = {
-					filetypes = {
-						"javascript",
-						"javascriptreact",
-						"typescript",
-						"typescriptreact",
-						"vue",
-					},
-					init_options = {
-						plugins = {
-							{
-								name = "@vue/typescript-plugin",
-								location = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/typescript-plugin",
-								languages = { "vue" },
-							},
-						},
-					},
-					settings = {
-						typescript = {
-							inlayHints = {
-								includeInlayParameterNameHints = "all",
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayVariableTypeHints = true,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayEnumMemberValueHints = true,
-							},
-						},
-						javascript = {
-							inlayHints = {
-								includeInlayParameterNameHints = "all",
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayVariableTypeHints = true,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayEnumMemberValueHints = true,
-							},
-						},
-					},
-				},
-			},
-		},
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = { ensure_installed = { "typescript", "javascript", "tsx", "vue", "css", "html" } },
-	},
-	{
 		"stevearc/conform.nvim",
 		opts = {
 			formatters_by_ft = {

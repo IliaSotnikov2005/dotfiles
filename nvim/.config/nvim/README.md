@@ -109,19 +109,21 @@ lua/
 
 ### Language configs (`plugins/lang/`)
 
+LSP-серверы настраиваются в `lua/servers/`, здесь — только форматеры (conform) и линтеры (nvim-lint).
+
 | File | Languages | Tools |
 |------|-----------|-------|
-| `go.lua` | Go | gopls, gofumpt, goimports, golines, golangci-lint |
-| `python.lua` | Python | pyright, isort, black, flake8 |
-| `typescript.lua` | JS/TS/Vue/React | ts_ls, prettierd, eslint_d |
-| `lua.lua` | Lua | lua_ls, stylua, luacheck |
-| `c.lua` | C/C++ | clangd, clang-format, cpplint |
-| `json.lua` | JSON | jsonls, prettierd, fixjson |
-| `web.lua` | HTML/CSS/SCSS | emmet_ls, html_lsp, tailwindcss, prettierd |
-| `shell.lua` | Bash/Shell | bashls, shfmt, shellcheck |
-| `yaml.lua` | YAML | yamlls, prettierd |
-| `docker.lua` | Dockerfile | dockerls, hadolint |
-| `solidity.lua` | Solidity | solidity_ls_nomicfoundation, prettierd, solhint |
+| `go.lua` | Go | gofumpt, goimports, golines, golangci-lint |
+| `python.lua` | Python | isort, black, flake8 |
+| `typescript.lua` | JS/TS/Vue/React | prettierd, eslint_d |
+| `lua.lua` | Lua | stylua, luacheck |
+| `c.lua` | C/C++ | clang-format, cpplint |
+| `json.lua` | JSON | prettierd, fixjson |
+| `web.lua` | HTML/CSS/SCSS | prettierd |
+| `shell.lua` | Bash/Shell | shfmt, shellcheck |
+| `yaml.lua` | YAML | prettierd |
+| `docker.lua` | Dockerfile | hadolint |
+| `solidity.lua` | Solidity | prettierd, solhint |
 
 ---
 
