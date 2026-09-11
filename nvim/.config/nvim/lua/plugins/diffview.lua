@@ -34,6 +34,7 @@ return {
 			end,
 			desc = "Diffview vs branch (pick)",
 		},
+		{ "<leader>dm", "<cmd>DiffviewOpen<CR>", desc = "Merge tool" },
 	},
 	opts = {
 		view = {
