@@ -21,6 +21,7 @@ require("servers.html_lsp")(capabilities)
 require("servers.yamlls")(capabilities)
 require("servers.tailwindcss")(capabilities)
 require("servers.solidity_ls_nomicfoundation")(capabilities)
+require("servers.prolog")(capabilities)
 
 vim.lsp.enable({
 	"lua_ls",
@@ -36,4 +37,5 @@ vim.lsp.enable({
 	"yamlls",
 	"tailwindcss",
 	"solidity_ls_nomicfoundation",
+	"prolog",
 })

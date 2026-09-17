@@ -88,6 +88,7 @@ return {
 			"comment",
 			"markdown",
 			"markdown_inline",
+			"prolog",
 			"regex",
 			"vimdoc",
 		},
