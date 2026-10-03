@@ -33,7 +33,7 @@ return {
 		-- Only intended to be used for plugin development / debugging.
 		log_runtime = false,
 		-- Filetypes this plugin will run on.
-		file_types = { "markdown" },
+		file_types = { "markdown", "Avante" },
 		-- Maximum file size (in MB) that this plugin will attempt to render.
 		-- File larger than this will effectively be ignored.
 		max_file_size = 10.0,
@@ -938,11 +938,19 @@ return {
 			buflisted = {},
 			-- Override for different buftype values, @see :h 'buftype'.
 			buftype = {
-				nofile = {
-					render_modes = true,
-					padding = { highlight = "NormalFloat" },
-					sign = { enabled = false },
+			nofile = {
+				render_modes = true,
+				padding = { highlight = "NormalFloat" },
+				sign = { enabled = false },
+				code = {
+					width = "block",
+					left_pad = 1,
+					right_pad = 1,
 				},
+				quote = {
+					repeat_linebreak = false,
+				},
+			},
 			},
 			-- Override for different filetype values, @see :h 'filetype'.
 			filetype = {},

@@ -32,7 +32,9 @@ return {
 				local bt = vim.bo.buftype
 				local buf = args.buf
 
-				if bt ~= "" then
+				-- scratch-буферы avante (Avante/AvanteInput) грузим ради подсветки code-блоков
+				local markdown_scratch = bt ~= "" and vim.tbl_contains({ "markdown", "Avante" }, ft)
+				if bt ~= "" and not markdown_scratch then
 					return
 				end
 
@@ -41,21 +43,23 @@ return {
 					return
 				end
 
-				if ft == "javascriptreact" or ft == "typescriptreact" then
-					vim.opt_local.foldmethod = "indent"
-				else
-					vim.opt_local.foldmethod = "expr"
-					vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-				end
-
-				vim.schedule(function()
-					if vim.fn.mode() ~= "t" then
-						vim.cmd("silent! normal! zx")
+				if not markdown_scratch then
+					if ft == "javascriptreact" or ft == "typescriptreact" then
+						vim.opt_local.foldmethod = "indent"
+					else
+						vim.opt_local.foldmethod = "expr"
+						vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 					end
-				end)
 
-				if not vim.tbl_contains({ "python", "html", "yaml", "markdown" }, ft) then
-					vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+					vim.schedule(function()
+						if vim.fn.mode() ~= "t" then
+							vim.cmd("silent! normal! zx")
+						end
+					end)
+
+					if not vim.tbl_contains({ "python", "html", "yaml", "markdown" }, ft) then
+						vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+					end
 				end
 
 				if vim.fn.executable("tree-sitter") ~= 1 then
@@ -68,15 +72,16 @@ return {
 					return false
 				end
 
-				if not vim.treesitter.language.get_lang(ft) then
+				local lang = vim.treesitter.language.get_lang(ft)
+				if not lang then
 					return
 				end
 
-				if vim.list_contains(treesitter.get_installed(), ft) then
-					highlight(buf, ft)
-				elseif vim.list_contains(treesitter.get_available(), ft) then
-					treesitter.install(ft):await(function()
-						highlight(buf, ft)
+				if vim.list_contains(treesitter.get_installed(), lang) then
+					highlight(buf, lang)
+				elseif vim.list_contains(treesitter.get_available(), lang) then
+					treesitter.install(lang):await(function()
+						highlight(buf, lang)
 					end)
 				end
 			end,
