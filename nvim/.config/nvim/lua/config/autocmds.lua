@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local markdown_options = vim.api.nvim_create_augroup("MardownOptions", {})
 vim.api.nvim_create_autocmd("FileType", {
 	group = markdown_options,
-	pattern = { "markdown", "text", "gitcommit" },
+	pattern = { "markdown", "text", "gitcommit", "tex" },
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.linebreak = true
@@ -50,6 +50,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.cursorline = false
 		vim.opt_local.colorcolumn = ""
 		vim.opt_local.signcolumn = "no"
+		vim.keymap.set({ "n", "x" }, "j", "gj", { buffer = true })
+		vim.keymap.set({ "n", "x" }, "k", "gk", { buffer = true })
 	end,
 })
 

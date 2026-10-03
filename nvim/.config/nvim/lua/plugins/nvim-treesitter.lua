@@ -84,8 +84,10 @@ return {
 	end,
 	opts = {
 		install = {
+			"bibtex",
 			"css",
 			"comment",
+			"latex",
 			"markdown",
 			"markdown_inline",
 			"prolog",
