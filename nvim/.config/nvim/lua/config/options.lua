@@ -99,6 +99,19 @@ vim.opt.foldmethod = "expr" -- Use expression for folding
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding
 vim.opt.foldlevel = 99 -- Keep all folds open by default
 
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us", "ru" }
+
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader>U", "<cmd>Undotree<cr>", { silent = true, desc = "Undotree" })
+
+local undo_dir = vim.fn.stdpath("data") .. "/undo"
+if vim.fn.isdirectory(undo_dir) == 0 then
+	vim.fn.mkdir(undo_dir, "p")
+end
+vim.opt.undodir = undo_dir
+vim.opt.undofile = true
+
 -- Split Behavior
 vim.opt.splitbelow = true -- Horizontal splits open below
 vim.opt.splitright = true -- Vertical splits open to the right
